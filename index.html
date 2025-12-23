@@ -723,75 +723,48 @@
         </button>
     </div>
 
-    <!-- Audio Player -->
-    <audio id="audioPlayer" loop preload="auto" crossorigin="anonymous">
-        <!-- Primary source -->
-        <source src="https://cdn.pixabay.com/audio/2022/11/28/audio_0b2e3f0dd1.mp3" type="audio/mpeg">
-        <!-- Fallback source 1 -->
-        <source src="https://www.mfiles.co.uk/mp3-downloads/o-come-all-ye-faithful.mp3" type="audio/mpeg">
-        <!-- Fallback source 2 -->
-        <source src="https://www.bensound.com/bensound-music/bensound-christmastime.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
+    <!-- Audio Player - Simplified -->
+    <audio id="audioPlayer" loop>
+        <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Music_for_Video/Kevin_MacLeod/Classical_Sampler/Kevin_MacLeod_-_Carol_of_the_Bells.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Music Control - Mobile Friendly
+        // Simple Music Control
         let musicPlaying = false;
         const audioPlayer = document.getElementById('audioPlayer');
         const musicBtn = document.getElementById('musicBtn');
 
+        // Set volume
+        audioPlayer.volume = 0.5;
+
         function toggleMusic() {
             if (musicPlaying) {
                 audioPlayer.pause();
+                audioPlayer.currentTime = 0;
                 musicBtn.textContent = '🎵';
                 musicBtn.style.animation = 'none';
                 musicPlaying = false;
             } else {
-                // Try to load first
-                audioPlayer.load();
+                const playPromise = audioPlayer.play();
 
-                // Wait a moment then play
-                setTimeout(() => {
-                    audioPlayer.play().then(() => {
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
                         musicBtn.textContent = '🔇';
                         musicBtn.style.animation = 'pulse 2s infinite';
                         musicPlaying = true;
-                        console.log('Music playing successfully!');
                     }).catch((error) => {
-                        console.error('Play failed:', error);
-                        // Show user feedback
-                        musicBtn.textContent = '⚠️';
-                        setTimeout(() => {
-                            musicBtn.textContent = '🎵';
-                        }, 2000);
-                        alert('Music couldn\'t play. Please check your internet connection or try again.');
+                        console.error('Playback error:', error);
+                        musicBtn.textContent = '🎵';
                     });
-                }, 100);
+                }
             }
         }
 
-        // Audio event listeners
-        audioPlayer.addEventListener('canplaythrough', () => {
-            console.log('Audio ready to play');
-        });
-
-        audioPlayer.addEventListener('loadeddata', () => {
-            console.log('Audio data loaded');
-        });
-
-        audioPlayer.addEventListener('error', (e) => {
-            console.error('Audio error:', e);
-            console.error('Error code:', audioPlayer.error?.code);
-            console.error('Error message:', audioPlayer.error?.message);
-        });
-
-        audioPlayer.addEventListener('playing', () => {
-            console.log('Audio is now playing');
-        });
-
-        audioPlayer.addEventListener('pause', () => {
-            console.log('Audio paused');
-        });
+        // Simple error handler
+        audioPlayer.onerror = function(e) {
+            console.error('Audio failed to load');
+            musicBtn.textContent = '🎵';
+        };
 
         // Create twinkling Christmas lights
         function createStringLights() {
