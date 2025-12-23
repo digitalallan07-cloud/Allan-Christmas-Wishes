@@ -723,34 +723,47 @@
         </button>
     </div>
 
-    <!-- YouTube Music Player (hidden iframe) -->
-    <iframe id="musicPlayer"
-            src="https://www.youtube.com/embed/bWZ_mgh3Vt0?start=111&autoplay=0&loop=1&playlist=bWZ_mgh3Vt0"
-            allow="autoplay; encrypted-media"
-            allowfullscreen>
-    </iframe>
+    <!-- Audio Player -->
+    <audio id="audioPlayer" loop preload="auto">
+        <source src="https://www.mfiles.co.uk/mp3-downloads/carol-of-the-bells.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        // Music Control with YouTube
+        // Music Control - Mobile Friendly
         let musicPlaying = false;
-        const musicPlayer = document.getElementById('musicPlayer');
+        const audioPlayer = document.getElementById('audioPlayer');
         const musicBtn = document.getElementById('musicBtn');
 
         function toggleMusic() {
             if (musicPlaying) {
-                // Reload iframe to stop
-                const src = musicPlayer.src;
-                musicPlayer.src = src.replace('autoplay=1', 'autoplay=0');
+                audioPlayer.pause();
                 musicBtn.textContent = '🎵';
+                musicBtn.style.animation = 'none';
                 musicPlaying = false;
             } else {
-                // Start playing
-                const src = musicPlayer.src;
-                musicPlayer.src = src.replace('autoplay=0', 'autoplay=1');
-                musicBtn.textContent = '🔇';
-                musicPlaying = true;
+                audioPlayer.play().then(() => {
+                    musicBtn.textContent = '🔇';
+                    musicBtn.style.animation = 'pulse 2s infinite';
+                    musicPlaying = true;
+                }).catch((error) => {
+                    console.log('Play failed:', error);
+                    // Show user they need to tap to play
+                    musicBtn.textContent = '▶️';
+                    setTimeout(() => {
+                        musicBtn.textContent = '🎵';
+                    }, 2000);
+                });
             }
         }
+
+        // Make sure audio is ready
+        audioPlayer.addEventListener('canplaythrough', () => {
+            console.log('Audio ready to play');
+        });
+
+        audioPlayer.addEventListener('error', (e) => {
+            console.error('Audio error:', e);
+        });
 
         // Create twinkling Christmas lights
         function createStringLights() {
@@ -819,12 +832,7 @@
         createSparkles();
         setInterval(createSnowflake, 350);
 
-        // Auto-attempt to play music (may be blocked by browser)
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                toggleMusic();
-            }, 1000);
-        });
+        // Note: Music requires user interaction on mobile - tap the music button!
     </script>
 </body>
 </html>
