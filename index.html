@@ -724,8 +724,14 @@
     </div>
 
     <!-- Audio Player -->
-    <audio id="audioPlayer" loop preload="auto">
+    <audio id="audioPlayer" loop preload="auto" crossorigin="anonymous">
+        <!-- Primary source -->
+        <source src="https://cdn.pixabay.com/audio/2022/11/28/audio_0b2e3f0dd1.mp3" type="audio/mpeg">
+        <!-- Fallback source 1 -->
         <source src="https://www.mfiles.co.uk/mp3-downloads/o-come-all-ye-faithful.mp3" type="audio/mpeg">
+        <!-- Fallback source 2 -->
+        <source src="https://www.bensound.com/bensound-music/bensound-christmastime.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
 
     <script>
@@ -741,28 +747,50 @@
                 musicBtn.style.animation = 'none';
                 musicPlaying = false;
             } else {
-                audioPlayer.play().then(() => {
-                    musicBtn.textContent = '🔇';
-                    musicBtn.style.animation = 'pulse 2s infinite';
-                    musicPlaying = true;
-                }).catch((error) => {
-                    console.log('Play failed:', error);
-                    // Show user they need to tap to play
-                    musicBtn.textContent = '▶️';
-                    setTimeout(() => {
-                        musicBtn.textContent = '🎵';
-                    }, 2000);
-                });
+                // Try to load first
+                audioPlayer.load();
+
+                // Wait a moment then play
+                setTimeout(() => {
+                    audioPlayer.play().then(() => {
+                        musicBtn.textContent = '🔇';
+                        musicBtn.style.animation = 'pulse 2s infinite';
+                        musicPlaying = true;
+                        console.log('Music playing successfully!');
+                    }).catch((error) => {
+                        console.error('Play failed:', error);
+                        // Show user feedback
+                        musicBtn.textContent = '⚠️';
+                        setTimeout(() => {
+                            musicBtn.textContent = '🎵';
+                        }, 2000);
+                        alert('Music couldn\'t play. Please check your internet connection or try again.');
+                    });
+                }, 100);
             }
         }
 
-        // Make sure audio is ready
+        // Audio event listeners
         audioPlayer.addEventListener('canplaythrough', () => {
             console.log('Audio ready to play');
         });
 
+        audioPlayer.addEventListener('loadeddata', () => {
+            console.log('Audio data loaded');
+        });
+
         audioPlayer.addEventListener('error', (e) => {
             console.error('Audio error:', e);
+            console.error('Error code:', audioPlayer.error?.code);
+            console.error('Error message:', audioPlayer.error?.message);
+        });
+
+        audioPlayer.addEventListener('playing', () => {
+            console.log('Audio is now playing');
+        });
+
+        audioPlayer.addEventListener('pause', () => {
+            console.log('Audio paused');
         });
 
         // Create twinkling Christmas lights
