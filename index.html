@@ -17,6 +17,7 @@
         :root {
             --burgundy: #8B2635;
             --forest-green: #1B4332;
+            --festive-red: #C41E3A;
             --cream: #F5F1E8;
             --gold: #D4AF37;
             --soft-white: #FDFCF9;
@@ -33,7 +34,7 @@
             min-height: 100vh;
         }
 
-        /* Elegant overlay pattern */
+        /* Enhanced festive overlay */
         body::before {
             content: '';
             position: fixed;
@@ -42,26 +43,73 @@
             width: 100%;
             height: 100%;
             background-image:
-                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(139, 38, 53, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.08) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* Elegant floating ornaments */
+        /* Twinkling Christmas lights */
+        .string-lights {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .light {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: twinkle 2s ease-in-out infinite;
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkleAnim 3s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            z-index: 2;
+        }
+
+        @keyframes sparkleAnim {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Enhanced floating ornaments */
         .ornament {
             position: fixed;
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.4), rgba(139, 38, 53, 0.2));
+            animation: ornamentFloat 15s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: 1;
             box-shadow:
-                0 0 20px rgba(212, 175, 55, 0.3),
+                0 0 30px currentColor,
                 inset -5px -5px 15px rgba(0, 0, 0, 0.2),
                 inset 5px 5px 15px rgba(255, 255, 255, 0.1);
-            animation: ornamentFloat 15s ease-in-out infinite;
-            opacity: 0.6;
-            z-index: 1;
         }
 
         .ornament::before {
@@ -76,11 +124,26 @@
             border-radius: 2px;
         }
 
+        .ornament.red {
+            background: radial-gradient(circle at 30% 30%, rgba(196, 30, 58, 0.6), rgba(139, 38, 53, 0.4));
+            color: #C41E3A;
+        }
+        .ornament.gold {
+            background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.6), rgba(184, 134, 11, 0.4));
+            color: #D4AF37;
+        }
+        .ornament.green {
+            background: radial-gradient(circle at 30% 30%, rgba(27, 67, 50, 0.6), rgba(15, 36, 25, 0.4));
+            color: #1B4332;
+        }
+
         .ornament:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
         .ornament:nth-child(2) { top: 60%; right: 8%; animation-delay: 3s; }
         .ornament:nth-child(3) { bottom: 15%; left: 10%; animation-delay: 6s; }
         .ornament:nth-child(4) { top: 35%; right: 15%; animation-delay: 2s; }
         .ornament:nth-child(5) { bottom: 40%; left: 20%; animation-delay: 8s; }
+        .ornament:nth-child(6) { top: 25%; left: 15%; animation-delay: 4s; }
+        .ornament:nth-child(7) { bottom: 30%; right: 10%; animation-delay: 7s; }
 
         @keyframes ornamentFloat {
             0%, 100% {
@@ -97,15 +160,15 @@
             }
         }
 
-        /* Soft snowfall */
+        /* Festive snowfall */
         .snowflake {
             position: fixed;
             top: -10px;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 18px;
             z-index: 9999;
             animation: gentleSnowfall linear infinite;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
         }
 
         @keyframes gentleSnowfall {
@@ -129,7 +192,7 @@
             justify-content: center;
         }
 
-        /* Header */
+        /* Header with festive glow */
         .header {
             text-align: center;
             margin-bottom: 60px;
@@ -144,6 +207,12 @@
             color: var(--gold);
             margin-bottom: 25px;
             font-weight: 500;
+            animation: tagGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes tagGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.8); }
         }
 
         .main-title {
@@ -155,13 +224,30 @@
             margin-bottom: 20px;
             text-shadow:
                 2px 2px 4px rgba(0, 0, 0, 0.3),
-                0 0 30px rgba(212, 175, 55, 0.2);
+                0 0 30px rgba(212, 175, 55, 0.3),
+                0 0 50px rgba(196, 30, 58, 0.2);
+            animation: titleFestiveGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleFestiveGlow {
+            0%, 100% {
+                text-shadow:
+                    2px 2px 4px rgba(0, 0, 0, 0.3),
+                    0 0 30px rgba(212, 175, 55, 0.3),
+                    0 0 50px rgba(196, 30, 58, 0.2);
+            }
+            50% {
+                text-shadow:
+                    2px 2px 4px rgba(0, 0, 0, 0.3),
+                    0 0 40px rgba(212, 175, 55, 0.5),
+                    0 0 70px rgba(196, 30, 58, 0.4);
+            }
         }
 
         .year-badge {
             display: inline-block;
             padding: 8px 24px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(139, 38, 53, 0.2));
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(196, 30, 58, 0.25));
             border: 2px solid var(--gold);
             border-radius: 50px;
             font-family: 'Montserrat', sans-serif;
@@ -170,9 +256,10 @@
             color: var(--gold);
             font-weight: 600;
             backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
-        /* Main Card */
+        /* Enhanced main card */
         .main-card {
             background: linear-gradient(135deg,
                 rgba(245, 241, 232, 0.95) 0%,
@@ -183,6 +270,7 @@
             box-shadow:
                 0 30px 80px rgba(0, 0, 0, 0.3),
                 0 0 0 1px rgba(212, 175, 55, 0.2),
+                0 0 60px rgba(196, 30, 58, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8);
             max-width: 900px;
             width: 100%;
@@ -201,19 +289,19 @@
             }
         }
 
-        /* Decorative corner elements */
+        /* Festive corner elements */
         .card-corner {
             position: absolute;
             width: 60px;
             height: 60px;
-            opacity: 0.15;
+            opacity: 0.2;
         }
 
         .card-corner.top-left {
             top: 20px;
             left: 20px;
-            border-top: 3px solid var(--gold);
-            border-left: 3px solid var(--gold);
+            border-top: 3px solid var(--festive-red);
+            border-left: 3px solid var(--festive-red);
         }
 
         .card-corner.top-right {
@@ -226,15 +314,15 @@
         .card-corner.bottom-left {
             bottom: 20px;
             left: 20px;
-            border-bottom: 3px solid var(--gold);
-            border-left: 3px solid var(--gold);
+            border-bottom: 3px solid var(--forest-green);
+            border-left: 3px solid var(--forest-green);
         }
 
         .card-corner.bottom-right {
             bottom: 20px;
             right: 20px;
-            border-bottom: 3px solid var(--gold);
-            border-right: 3px solid var(--gold);
+            border-bottom: 3px solid var(--festive-red);
+            border-right: 3px solid var(--festive-red);
         }
 
         /* Content */
@@ -256,24 +344,26 @@
         }
 
         .greeting-strong {
-            color: var(--burgundy);
+            color: var(--festive-red);
             font-weight: 600;
         }
 
-        /* Divider */
+        /* Festive divider */
         .elegant-divider {
             width: 100%;
             height: 1px;
             background: linear-gradient(90deg,
                 transparent,
+                var(--festive-red),
                 var(--gold),
+                var(--forest-green),
                 transparent);
             margin: 50px 0;
             position: relative;
         }
 
         .elegant-divider::after {
-            content: '❄';
+            content: '⭐';
             position: absolute;
             top: 50%;
             left: 50%;
@@ -281,10 +371,21 @@
             background: var(--cream);
             padding: 0 15px;
             font-size: 1.5rem;
-            color: var(--gold);
+            animation: starTwinkle 2s ease-in-out infinite;
         }
 
-        /* Tree decoration */
+        @keyframes starTwinkle {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                filter: drop-shadow(0 0 5px var(--gold));
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                filter: drop-shadow(0 0 15px var(--gold));
+            }
+        }
+
+        /* Festive tree decoration */
         .tree-decoration {
             text-align: center;
             font-size: 5rem;
@@ -296,22 +397,25 @@
         @keyframes treeGlow {
             0%, 100% {
                 filter: drop-shadow(0 5px 15px rgba(27, 67, 50, 0.4));
+                transform: scale(1);
             }
             50% {
-                filter: drop-shadow(0 8px 25px rgba(212, 175, 55, 0.6));
+                filter: drop-shadow(0 8px 30px rgba(212, 175, 55, 0.7));
+                transform: scale(1.05);
             }
         }
 
-        /* Bible Verse */
+        /* Enhanced Bible verse */
         .verse-section {
             background: linear-gradient(135deg,
                 rgba(27, 67, 50, 0.08),
-                rgba(212, 175, 55, 0.06));
-            border-left: 4px solid var(--burgundy);
+                rgba(212, 175, 55, 0.08));
+            border-left: 4px solid var(--festive-red);
             border-radius: 15px;
             padding: 45px 40px;
             margin: 45px 0;
             position: relative;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
         }
 
         .verse-section::before {
@@ -321,7 +425,7 @@
             left: 25px;
             font-family: 'Playfair Display', serif;
             font-size: 120px;
-            color: rgba(212, 175, 55, 0.12);
+            color: rgba(212, 175, 55, 0.15);
             line-height: 1;
         }
 
@@ -329,7 +433,17 @@
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 25px;
-            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
+            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.5));
+            animation: iconGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes iconGlow {
+            0%, 100% {
+                filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.5));
+            }
+            50% {
+                filter: drop-shadow(0 4px 15px rgba(212, 175, 55, 0.8));
+            }
         }
 
         .verse-text {
@@ -372,14 +486,20 @@
             font-size: 2.5rem;
             margin: 20px 0;
             display: inline-block;
-            color: var(--burgundy);
-            animation: heartPulse 2s ease-in-out infinite;
-            filter: drop-shadow(0 3px 10px rgba(139, 38, 53, 0.3));
+            color: var(--festive-red);
+            animation: heartPulse 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 3px 15px rgba(196, 30, 58, 0.5));
         }
 
         @keyframes heartPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 3px 15px rgba(196, 30, 58, 0.5));
+            }
+            50% {
+                transform: scale(1.2);
+                filter: drop-shadow(0 5px 25px rgba(196, 30, 58, 0.8));
+            }
         }
 
         .signature-name {
@@ -409,7 +529,7 @@
             background: linear-gradient(135deg,
                 rgba(245, 241, 232, 0.95),
                 rgba(253, 252, 249, 0.92));
-            border: 2px solid rgba(212, 175, 55, 0.3);
+            border: 2px solid rgba(212, 175, 55, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -418,6 +538,7 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow:
                 0 10px 25px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(212, 175, 55, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8);
             text-decoration: none;
             color: #2C2C2C;
@@ -427,7 +548,8 @@
             transform: translateY(-8px) scale(1.1);
             box-shadow:
                 0 15px 35px rgba(0, 0, 0, 0.3),
-                0 0 0 4px rgba(212, 175, 55, 0.2);
+                0 0 30px rgba(212, 175, 55, 0.4),
+                0 0 0 4px rgba(212, 175, 55, 0.3);
             border-color: var(--gold);
         }
 
@@ -437,7 +559,7 @@
         }
 
         .music-btn:hover {
-            background: linear-gradient(135deg, var(--burgundy), var(--forest-green));
+            background: linear-gradient(135deg, var(--festive-red), var(--forest-green));
             color: white;
         }
 
@@ -451,6 +573,16 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* Music player (hidden) */
+        #musicPlayer {
+            position: fixed;
+            top: -1000px;
+            left: -1000px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
         }
 
         /* Responsive */
@@ -479,6 +611,11 @@
                 gap: 15px;
                 bottom: 25px;
             }
+
+            .light {
+                width: 8px;
+                height: 8px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -497,12 +634,20 @@
     </style>
 </head>
 <body>
+    <!-- Twinkling String Lights -->
+    <div class="string-lights" id="lights"></div>
+
+    <!-- Sparkles -->
+    <div id="sparkles"></div>
+
     <!-- Floating Ornaments -->
-    <div class="ornament"></div>
-    <div class="ornament"></div>
-    <div class="ornament"></div>
-    <div class="ornament"></div>
-    <div class="ornament"></div>
+    <div class="ornament red"></div>
+    <div class="ornament gold"></div>
+    <div class="ornament green"></div>
+    <div class="ornament red"></div>
+    <div class="ornament gold"></div>
+    <div class="ornament green"></div>
+    <div class="ornament red"></div>
 
     <!-- Main Container -->
     <div class="container">
@@ -578,37 +723,66 @@
         </button>
     </div>
 
-    <!-- Background Music -->
-    <audio id="bgMusic" loop>
-        <source src="https://www.mfiles.co.uk/mp3-downloads/carol-of-the-bells.mp3" type="audio/mpeg">
-    </audio>
+    <!-- YouTube Music Player (hidden iframe) -->
+    <iframe id="musicPlayer"
+            src="https://www.youtube.com/embed/bWZ_mgh3Vt0?start=111&autoplay=0&loop=1&playlist=bWZ_mgh3Vt0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+    </iframe>
 
     <script>
-        // Music Control
+        // Music Control with YouTube
         let musicPlaying = false;
-        const music = document.getElementById('bgMusic');
+        const musicPlayer = document.getElementById('musicPlayer');
         const musicBtn = document.getElementById('musicBtn');
 
         function toggleMusic() {
             if (musicPlaying) {
-                music.pause();
+                // Reload iframe to stop
+                const src = musicPlayer.src;
+                musicPlayer.src = src.replace('autoplay=1', 'autoplay=0');
                 musicBtn.textContent = '🎵';
+                musicPlaying = false;
             } else {
-                music.play();
+                // Start playing
+                const src = musicPlayer.src;
+                musicPlayer.src = src.replace('autoplay=0', 'autoplay=1');
                 musicBtn.textContent = '🔇';
+                musicPlaying = true;
             }
-            musicPlaying = !musicPlaying;
         }
 
-        // Auto-play attempt
-        window.addEventListener('load', () => {
-            music.play().then(() => {
-                musicPlaying = true;
-                musicBtn.textContent = '🔇';
-            }).catch(() => {
-                console.log('Click music button to play');
-            });
-        });
+        // Create twinkling Christmas lights
+        function createStringLights() {
+            const lightsContainer = document.getElementById('lights');
+            const colors = ['#C41E3A', '#D4AF37', '#1B4332', '#FFFFFF', '#FF6B35'];
+            const numLights = 15;
+
+            for (let i = 0; i < numLights; i++) {
+                const light = document.createElement('div');
+                light.className = 'light';
+                light.style.left = `${(100 / numLights) * i + (100 / numLights / 2)}%`;
+                light.style.top = `${Math.sin(i * 0.5) * 30 + 30}px`;
+                light.style.color = colors[i % colors.length];
+                light.style.animationDelay = `${Math.random() * 2}s`;
+                lightsContainer.appendChild(light);
+            }
+        }
+
+        // Create sparkles
+        function createSparkles() {
+            const sparklesContainer = document.getElementById('sparkles');
+            const numSparkles = 30;
+
+            for (let i = 0; i < numSparkles; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = `${Math.random() * 100}%`;
+                sparkle.style.top = `${Math.random() * 100}%`;
+                sparkle.style.animationDelay = `${Math.random() * 3}s`;
+                sparklesContainer.appendChild(sparkle);
+            }
+        }
 
         // Gentle snowfall
         function createSnowflake() {
@@ -618,16 +792,13 @@
             snowflake.style.left = `${Math.random() * 100}%`;
             snowflake.style.animationDuration = `${12 + Math.random() * 18}s`;
             snowflake.style.fontSize = `${14 + Math.random() * 12}px`;
-            snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+            snowflake.style.opacity = Math.random() * 0.6 + 0.4;
             document.body.appendChild(snowflake);
 
             setTimeout(() => {
                 snowflake.remove();
             }, 30000);
         }
-
-        // Create snowflakes periodically
-        setInterval(createSnowflake, 400);
 
         // Parallax effect on ornaments
         document.addEventListener('mousemove', (e) => {
@@ -641,6 +812,18 @@
                 const yMove = (y - 0.5) * speed;
                 ornament.style.transform = `translate(${xMove}px, ${yMove}px)`;
             });
+        });
+
+        // Initialize
+        createStringLights();
+        createSparkles();
+        setInterval(createSnowflake, 350);
+
+        // Auto-attempt to play music (may be blocked by browser)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                toggleMusic();
+            }, 1000);
         });
     </script>
 </body>
