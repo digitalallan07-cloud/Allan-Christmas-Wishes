@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas - Allan's Wishes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Snow Animation */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 9999;
+            color: #fff;
+            font-size: 1em;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 5px #000;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Starry Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5),
+                         0 0 40px rgba(255, 215, 0, 0.3);
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.5),
+                             0 0 40px rgba(255, 215, 0, 0.3);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(255, 215, 0, 0.8),
+                             0 0 60px rgba(255, 215, 0, 0.5),
+                             0 0 80px rgba(255, 215, 0, 0.3);
+            }
+        }
+
+        .header .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #e0e0e0;
+            letter-spacing: 3px;
+        }
+
+        /* Main Card */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+                        0 0 0 1px rgba(255, 255, 255, 0.1);
+            max-width: 800px;
+            width: 100%;
+            animation: fadeInUp 1.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%);
+            animation: shine 6s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Personal Message */
+        .message {
+            margin-bottom: 40px;
+        }
+
+        .from {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .message p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #f0f0f0;
+            margin-bottom: 15px;
+            animation: fadeIn 2.5s ease-out;
+        }
+
+        /* Bible Verse Section */
+        .bible-verse {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #ffd700;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 15px;
+            animation: fadeIn 3s ease-out;
+        }
+
+        .bible-verse .verse-icon {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .bible-verse .verse-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .bible-verse .verse-reference {
+            text-align: center;
+            color: #ffd700;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Christmas Tree Decoration */
+        .tree-emoji {
+            font-size: 4rem;
+            text-align: center;
+            margin: 30px 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Music Control */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: rgba(255, 215, 0, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.7);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 5px 40px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        /* Closing */
+        .closing {
+            text-align: center;
+            margin-top: 40px;
+            animation: fadeIn 3.5s ease-out;
+        }
+
+        .closing .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-top: 20px;
+        }
+
+        .closing .heart {
+            font-size: 2rem;
+            color: #ff6b6b;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+
+            .card {
+                padding: 40px 30px;
+            }
+
+            .message p {
+                font-size: 1rem;
+            }
+
+            .bible-verse .verse-text {
+                font-size: 1.1rem;
+            }
+
+            .music-control {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Fireworks effect */
+        .firework {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: firework-animation 1.5s ease-out infinite;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        @keyframes firework-animation {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y));
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Stars Background -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Merry Christmas!</h1>
+            <p class="subtitle">2025</p>
+        </div>
+
+        <!-- Main Card -->
+        <div class="card">
+            <div class="card-content">
+                <!-- Personal Message -->
+                <div class="message">
+                    <div class="from">From Allan, with love...</div>
+                    <p>
+                        Dear Friend,
+                    </p>
+                    <p>
+                        As we celebrate this beautiful season, I want to personally wish you a Christmas filled with joy, peace, and love. May this festive time bring warmth to your heart and endless blessings to you and your loved ones.
+                    </p>
+                    <p>
+                        In this season of giving and reflection, I'm reminded of how precious each connection is. Thank you for being part of my journey, and may the spirit of Christmas light up your path with hope and happiness.
+                    </p>
+                </div>
+
+                <!-- Christmas Tree -->
+                <div class="tree-emoji">🎄</div>
+
+                <!-- Bible Verse -->
+                <div class="bible-verse">
+                    <div class="verse-icon">✨</div>
+                    <div class="verse-text">
+                        "For unto you is born this day in the city of David a Saviour, which is Christ the Lord. And suddenly there was with the angel a multitude of the heavenly host praising God, and saying, Glory to God in the highest, and on earth peace, good will toward men."
+                    </div>
+                    <div class="verse-reference">
+                        - Luke 2:11, 13-14 (KJV)
+                    </div>
+                </div>
+
+                <!-- Closing -->
+                <div class="closing">
+                    <p>May God's love shine upon you this Christmas and always!</p>
+                    <div class="heart">❤️</div>
+                    <div class="signature">Allan</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Control Button -->
+    <button class="music-control" id="musicBtn" onclick="toggleMusic()">🎵</button>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-jazzyfrenchy.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Music Control
+        let musicPlaying = false;
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+
+        function toggleMusic() {
+            if (musicPlaying) {
+                music.pause();
+                musicBtn.textContent = '🎵';
+            } else {
+                music.play();
+                musicBtn.textContent = '🔇';
+            }
+            musicPlaying = !musicPlaying;
+        }
+
+        // Auto-play music (browsers may block this, button provides manual control)
+        window.addEventListener('load', () => {
+            music.play().then(() => {
+                musicPlaying = true;
+                musicBtn.textContent = '🔇';
+            }).catch(() => {
+                // Autoplay was prevented
+                console.log('Click the music button to play');
+            });
+        });
+
+        // Create stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 100;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create snowflakes
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.textContent = '❄';
+            snowflake.style.left = `${Math.random() * 100}%`;
+            snowflake.style.animationDuration = `${5 + Math.random() * 10}s`;
+            snowflake.style.fontSize = `${10 + Math.random() * 20}px`;
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 15000);
+        }
+
+        // Create fireworks
+        function createFirework() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffd700'];
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight * 0.5;
+
+            for (let i = 0; i < 30; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = `${x}px`;
+                firework.style.top = `${y}px`;
+                firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                const angle = (Math.PI * 2 * i) / 30;
+                const velocity = 50 + Math.random() * 100;
+                firework.style.setProperty('--x', `${Math.cos(angle) * velocity}px`);
+                firework.style.setProperty('--y', `${Math.sin(angle) * velocity}px`);
+
+                document.body.appendChild(firework);
+
+                setTimeout(() => {
+                    firework.remove();
+                }, 1500);
+            }
+        }
+
+        // Initialize effects
+        createStars();
+
+        // Continuous snowfall
+        setInterval(createSnowflake, 300);
+
+        // Occasional fireworks
+        setInterval(createFirework, 3000);
+
+        // Initial firework
+        setTimeout(createFirework, 1000);
+    </script>
+</body>
+</html>
