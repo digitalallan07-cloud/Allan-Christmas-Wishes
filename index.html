@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merry Christmas - Allan Rufus</title>
+    <title>Merry Christmas 2025 - Allan Rufus</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,113 +15,111 @@
         }
 
         :root {
-            /* Electric Christmas Palette */
-            --electric-red: #FF0844;
-            --electric-green: #00FF88;
-            --electric-gold: #FFD700;
-            --electric-blue: #00D4FF;
-            --electric-purple: #B026FF;
-            --pure-white: #FFFFFF;
-            --deep-black: #000000;
-            --dark-bg: #0A0A0A;
-            --card-bg: rgba(20, 20, 25, 0.85);
+            --red-primary: #FF1744;
+            --green-primary: #00E676;
+            --gold-primary: #FFD700;
+            --blue-accent: #00B0FF;
+            --purple-accent: #E040FB;
+            --dark-bg: #0D0D0D;
+            --darker-bg: #050505;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--darker-bg);
+            color: #FFFFFF;
             overflow-x: hidden;
-            background:
-                radial-gradient(ellipse at top, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at bottom, rgba(255, 8, 68, 0.15) 0%, transparent 50%),
-                linear-gradient(180deg, #000000 0%, #0A0A0A 50%, #000814 100%);
-            background-attachment: fixed;
-            color: var(--pure-white);
-            min-height: 100vh;
             position: relative;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Ambient Light Effect */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle,
-                rgba(255, 8, 68, 0.2) 0%,
-                rgba(0, 255, 136, 0.15) 35%,
-                rgba(0, 212, 255, 0.1) 60%,
-                transparent 70%);
-            filter: blur(100px);
-            animation: ambientPulse 8s ease-in-out infinite;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        @keyframes ambientPulse {
-            0%, 100% {
-                opacity: 0.6;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                opacity: 0.8;
-                transform: translate(-50%, -50%) scale(1.2);
-            }
-        }
-
-        /* Premium Snow Animation */
-        .snowflake {
-            position: fixed;
-            top: -10px;
-            z-index: 9999;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1em;
-            text-shadow:
-                0 0 10px rgba(0, 212, 255, 0.5),
-                0 0 20px rgba(255, 255, 255, 0.3);
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-            }
-        }
-
-        /* Electric Stars */
-        .stars {
+        /* Animated Gradient Background */
+        .bg-gradient {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 1;
+            z-index: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 23, 68, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 230, 118, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.08) 0%, transparent 60%),
+                linear-gradient(180deg, #050505 0%, #0D0D0D 100%);
+            animation: bgShift 20s ease-in-out infinite;
         }
 
-        .star {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--pure-white);
+        @keyframes bgShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        /* 3D Floating Shapes */
+        .shape {
+            position: fixed;
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
-            animation: electricTwinkle 3s infinite;
+            filter: blur(60px);
+            opacity: 0.3;
+            z-index: 1;
+            animation: float3D 20s infinite ease-in-out;
         }
 
-        @keyframes electricTwinkle {
+        .shape1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--red-primary), var(--purple-accent));
+            top: 10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--green-primary), var(--blue-accent));
+            bottom: 20%;
+            right: -5%;
+            animation-delay: 5s;
+        }
+
+        .shape3 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--red-primary));
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 10s;
+        }
+
+        @keyframes float3D {
             0%, 100% {
-                opacity: 0.3;
-                box-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, -50px) scale(1.1);
             }
             50% {
-                opacity: 1;
-                box-shadow: 0 0 20px rgba(0, 212, 255, 1),
-                            0 0 30px rgba(255, 8, 68, 0.5);
+                transform: translate(-30px, 50px) scale(0.9);
+            }
+            75% {
+                transform: translate(40px, 30px) scale(1.05);
+            }
+        }
+
+        /* Snow Effect */
+        .snow {
+            position: fixed;
+            top: -10px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 20px;
+            z-index: 9999;
+            animation: snowFall linear infinite;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes snowFall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
             }
         }
 
@@ -129,409 +127,356 @@
         .container {
             position: relative;
             z-index: 10;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 40px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            padding: 40px 20px;
         }
 
-        /* Premium Header */
-        .header {
+        /* Hero Section */
+        .hero {
             text-align: center;
-            margin-bottom: 80px;
-            animation: fadeInDown 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-top: 80px;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease-out;
         }
 
-        .header h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 8rem;
-            font-weight: 300;
-            letter-spacing: -2px;
-            color: var(--pure-white);
-            margin-bottom: 20px;
-            background: linear-gradient(135deg,
-                var(--pure-white) 0%,
-                var(--electric-blue) 25%,
-                var(--electric-green) 50%,
-                var(--electric-red) 75%,
-                var(--pure-white) 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: electricGlow 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.3));
-        }
-
-        @keyframes electricGlow {
-            0%, 100% {
-                background-position: 0% center;
-                filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.4));
-            }
-            25% {
-                filter: drop-shadow(0 0 40px rgba(255, 8, 68, 0.4));
-            }
-            50% {
-                background-position: 100% center;
-                filter: drop-shadow(0 0 40px rgba(0, 255, 136, 0.4));
-            }
-            75% {
-                filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.4));
-            }
-        }
-
-        .header .subtitle {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.125rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.7);
+        .hero-subtitle {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
             letter-spacing: 8px;
             text-transform: uppercase;
+            color: var(--gold-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
         }
 
-        /* Premium Glass Card */
-        .card {
-            background: rgba(20, 20, 25, 0.7);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border-radius: 40px;
-            padding: 80px 70px;
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.1),
-                0 50px 100px rgba(0, 0, 0, 0.5),
-                inset 0 1px 1px rgba(255, 255, 255, 0.1);
-            max-width: 1000px;
-            width: 100%;
-            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.15),
-                0 60px 120px rgba(0, 0, 0, 0.6),
-                0 0 80px rgba(0, 212, 255, 0.1),
-                inset 0 1px 1px rgba(255, 255, 255, 0.15);
-        }
-
-        /* Electric Border Glow */
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg,
-                var(--electric-red) 0%,
-                var(--electric-blue) 25%,
-                var(--electric-green) 50%,
-                var(--electric-gold) 75%,
-                var(--electric-red) 100%);
-            background-size: 200% 200%;
-            border-radius: 40px;
-            opacity: 0.3;
-            filter: blur(20px);
-            animation: borderGlow 8s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes borderGlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .card-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Premium Typography */
-        .message {
-            margin-bottom: 60px;
-        }
-
-        .from {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            font-weight: 400;
-            font-style: italic;
-            background: linear-gradient(135deg, var(--electric-gold), var(--electric-red));
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 15vw, 12rem);
+            line-height: 0.9;
+            letter-spacing: -5px;
+            background: linear-gradient(180deg,
+                #FFFFFF 0%,
+                var(--red-primary) 30%,
+                var(--green-primary) 60%,
+                var(--gold-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 30px;
-            animation: fadeIn 2s ease-out;
+            text-shadow: 0 0 80px rgba(255, 23, 68, 0.5);
+            animation: titleGlow 3s ease-in-out infinite;
+            position: relative;
         }
 
-        .message p {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.125rem;
-            font-weight: 300;
-            line-height: 2;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 20px;
-            animation: fadeIn 2.5s ease-out;
+        @keyframes titleGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 30px rgba(255, 23, 68, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 60px rgba(0, 230, 118, 0.6));
+            }
         }
 
-        /* Bible Verse - Premium Style */
-        .bible-verse {
-            background: linear-gradient(135deg,
-                rgba(255, 8, 68, 0.1) 0%,
-                rgba(0, 212, 255, 0.05) 100%);
-            border-left: 3px solid;
-            border-image: linear-gradient(180deg,
-                var(--electric-red),
-                var(--electric-blue),
-                var(--electric-green)) 1;
-            padding: 50px 40px;
-            margin: 60px 0;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            animation: fadeIn 3s ease-out;
+        .hero-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            color: rgba(255, 255, 255, 0.1);
+            letter-spacing: 10px;
+            text-shadow: 0 0 40px var(--blue-accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Content Card */
+        .content-wrapper {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: rgba(20, 20, 25, 0.6);
+            backdrop-filter: blur(30px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 60px;
             position: relative;
             overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: fadeInUp 1.2s ease-out;
         }
 
-        .bible-verse::before {
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 23, 68, 0.5);
+            box-shadow: 0 20px 60px rgba(255, 23, 68, 0.3);
+        }
+
+        /* Message Section */
+        .from-tag {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--gold-primary);
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .message-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.125rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        /* Decorative Element */
+        .christmas-tree {
+            font-size: 6rem;
+            text-align: center;
+            margin: 40px 0;
+            animation: treeFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 40px var(--green-primary));
+        }
+
+        @keyframes treeFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        /* Bible Verse Card */
+        .verse-card {
+            background: linear-gradient(135deg,
+                rgba(255, 23, 68, 0.15) 0%,
+                rgba(0, 230, 118, 0.1) 100%);
+            border-left: 4px solid var(--gold-primary);
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            position: relative;
+        }
+
+        .verse-card::before {
             content: '"';
             position: absolute;
-            top: -20px;
-            left: 20px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 150px;
-            color: rgba(0, 212, 255, 0.1);
+            top: -30px;
+            left: 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 200px;
+            color: rgba(255, 215, 0, 0.08);
             line-height: 1;
         }
 
-        .bible-verse .verse-icon {
-            font-size: 3rem;
-            margin-bottom: 25px;
+        .verse-icon {
             text-align: center;
-            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));
+            font-size: 3rem;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 20px var(--gold-primary));
         }
 
-        .bible-verse .verse-text {
+        .verse-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.75rem;
-            font-weight: 400;
-            font-style: italic;
-            line-height: 1.9;
-            text-align: center;
-            margin-bottom: 25px;
-            color: rgba(255, 255, 255, 0.95);
-            letter-spacing: 0.5px;
-        }
-
-        .bible-verse .verse-reference {
-            text-align: center;
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--electric-blue), var(--electric-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 500;
-            font-size: 1rem;
-            letter-spacing: 2px;
-        }
-
-        /* Christmas Tree */
-        .tree-emoji {
-            font-size: 5rem;
-            text-align: center;
-            margin: 50px 0;
-            animation: bounce 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px rgba(0, 255, 136, 0.6));
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.05); }
-        }
-
-        /* Premium Gifts */
-        .gift {
-            position: fixed;
-            font-size: 3rem;
-            animation: float 5s ease-in-out infinite;
-            z-index: 5;
-            filter: drop-shadow(0 0 20px rgba(255, 8, 68, 0.5));
-            opacity: 0.8;
-        }
-
-        .gift:nth-child(1) {
-            left: 5%;
-            top: 20%;
-            animation-delay: 0s;
-            filter: drop-shadow(0 0 20px rgba(255, 8, 68, 0.5));
-        }
-        .gift:nth-child(2) {
-            right: 8%;
-            top: 35%;
-            animation-delay: 1.5s;
-            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));
-        }
-        .gift:nth-child(3) {
-            left: 10%;
-            bottom: 25%;
-            animation-delay: 3s;
-            filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.5));
-        }
-        .gift:nth-child(4) {
-            right: 12%;
-            bottom: 30%;
-            animation-delay: 0.75s;
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg) scale(1);
-            }
-            25% {
-                transform: translateY(-15px) rotate(3deg) scale(1.05);
-            }
-            50% {
-                transform: translateY(-30px) rotate(-3deg) scale(1.1);
-            }
-            75% {
-                transform: translateY(-15px) rotate(3deg) scale(1.05);
-            }
-        }
-
-        /* Social Links - Apple Style */
-        .instagram-link {
-            position: fixed;
-            bottom: 40px;
-            left: 40px;
-            z-index: 1000;
-            background: rgba(20, 20, 25, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            width: 64px;
-            height: 64px;
             font-size: 2rem;
-            cursor: pointer;
-            box-shadow:
-                0 10px 30px rgba(0, 0, 0, 0.3),
-                inset 0 1px 1px rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
+            font-style: italic;
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.95);
         }
 
-        .instagram-link:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow:
-                0 20px 40px rgba(188, 24, 136, 0.4),
-                inset 0 1px 1px rgba(255, 255, 255, 0.2);
-            background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        .verse-reference {
+            text-align: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            color: var(--gold-primary);
+            font-weight: 600;
         }
 
-        /* Music Control - Apple Style */
-        .music-control {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            z-index: 1000;
-            background: rgba(20, 20, 25, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            width: 64px;
-            height: 64px;
-            font-size: 1.75rem;
-            cursor: pointer;
-            box-shadow:
-                0 10px 30px rgba(0, 0, 0, 0.3),
-                inset 0 1px 1px rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            color: var(--pure-white);
-        }
-
-        .music-control:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow:
-                0 20px 40px rgba(0, 212, 255, 0.4),
-                inset 0 1px 1px rgba(255, 255, 255, 0.2);
-            background: linear-gradient(135deg, var(--electric-red), var(--electric-green));
-        }
-
-        /* Closing Section */
-        .closing {
+        /* Signature Section */
+        .signature-section {
             text-align: center;
             margin-top: 60px;
-            animation: fadeIn 3.5s ease-out;
         }
 
-        .closing p {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.125rem;
-            font-weight: 300;
+        .signature-message {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
             color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+            font-weight: 300;
         }
 
-        .closing .heart {
-            font-size: 2.5rem;
-            margin: 25px 0;
+        .heart-icon {
+            font-size: 3rem;
+            margin: 20px 0;
             display: inline-block;
-            animation: heartbeat 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px rgba(255, 8, 68, 0.6));
+            animation: heartBeat 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px var(--red-primary));
         }
 
-        @keyframes heartbeat {
+        @keyframes heartBeat {
             0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.15); }
+            25% { transform: scale(1.2); }
             50% { transform: scale(1); }
             75% { transform: scale(1.15); }
         }
 
-        .closing .signature {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
-            font-weight: 400;
-            letter-spacing: 3px;
+        .signature-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            letter-spacing: 5px;
             background: linear-gradient(135deg,
-                var(--electric-red) 0%,
-                var(--electric-gold) 25%,
-                var(--electric-green) 50%,
-                var(--electric-blue) 75%,
-                var(--electric-purple) 100%);
+                var(--red-primary) 0%,
+                var(--gold-primary) 25%,
+                var(--green-primary) 50%,
+                var(--blue-accent) 75%,
+                var(--purple-accent) 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-top: 30px;
-            animation: signatureGlow 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
+            animation: gradientShift 4s linear infinite;
+            margin-top: 20px;
         }
 
-        @keyframes signatureGlow {
+        @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* Floating Gifts */
+        .gift-float {
+            position: fixed;
+            font-size: 3rem;
+            z-index: 5;
+            animation: giftFloat 6s ease-in-out infinite;
+        }
+
+        .gift1 {
+            top: 15%;
+            left: 5%;
+            animation-delay: 0s;
+            filter: drop-shadow(0 0 20px var(--red-primary));
+        }
+
+        .gift2 {
+            top: 40%;
+            right: 8%;
+            animation-delay: 2s;
+            filter: drop-shadow(0 0 20px var(--green-primary));
+        }
+
+        .gift3 {
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 4s;
+            filter: drop-shadow(0 0 20px var(--gold-primary));
+        }
+
+        .gift4 {
+            bottom: 35%;
+            right: 12%;
+            animation-delay: 1s;
+            filter: drop-shadow(0 0 20px var(--blue-accent));
+        }
+
+        @keyframes giftFloat {
             0%, 100% {
-                background-position: 0% center;
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-30px) rotate(10deg) scale(1.1);
             }
             50% {
-                background-position: 100% center;
+                transform: translateY(-60px) rotate(-10deg) scale(1.15);
+            }
+            75% {
+                transform: translateY(-30px) rotate(10deg) scale(1.1);
             }
         }
 
-        /* Premium Animations */
+        /* Social Controls */
+        .social-controls {
+            position: fixed;
+            bottom: 40px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            width: 70px;
+            height: 70px;
+            background: rgba(20, 20, 25, 0.8);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-decoration: none;
+            color: white;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.2) translateY(-10px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .instagram-btn:hover {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .music-btn:hover {
+            background: linear-gradient(135deg, var(--red-primary), var(--green-primary));
+        }
+
+        /* Animations */
         @keyframes fadeInDown {
             from {
                 opacity: 0;
-                transform: translateY(-40px);
+                transform: translateY(-60px);
             }
             to {
                 opacity: 1;
@@ -542,7 +487,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(40px);
+                transform: translateY(60px);
             }
             to {
                 opacity: 1;
@@ -550,177 +495,109 @@
             }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Electric Fireworks */
-        .firework {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px currentColor;
-            animation: firework-animation 2s ease-out infinite;
-            pointer-events: none;
-            z-index: 9998;
-        }
-
-        @keyframes firework-animation {
-            0% {
-                transform: translate(0, 0);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--x), var(--y));
-                opacity: 0;
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .header h1 {
-                font-size: 5rem;
-            }
-
-            .card {
-                padding: 60px 50px;
-            }
-
-            .closing .signature {
-                font-size: 3rem;
-            }
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 60px 20px;
-            }
-
-            .header h1 {
-                font-size: 3.5rem;
-            }
-
             .card {
-                padding: 50px 35px;
-                border-radius: 30px;
+                padding: 40px 30px;
             }
 
-            .message p {
-                font-size: 1rem;
-            }
-
-            .bible-verse .verse-text {
-                font-size: 1.375rem;
-            }
-
-            .gift {
-                font-size: 2rem;
-            }
-
-            .instagram-link,
-            .music-control {
-                width: 56px;
-                height: 56px;
+            .verse-text {
                 font-size: 1.5rem;
-                bottom: 30px;
             }
 
-            .instagram-link {
-                left: 30px;
-            }
-
-            .music-control {
-                right: 30px;
-            }
-
-            .closing .signature {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 2.5rem;
-            }
-
-            .card {
-                padding: 40px 25px;
-            }
-
-            .closing .signature {
+            .gift-float {
                 font-size: 2rem;
+            }
+
+            .control-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .social-controls {
+                gap: 15px;
+                bottom: 30px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Floating Gifts -->
-    <div class="gift">🎁</div>
-    <div class="gift">🎁</div>
-    <div class="gift">🎁</div>
-    <div class="gift">🎁</div>
+    <!-- Background -->
+    <div class="bg-gradient"></div>
 
-    <!-- Stars Background -->
-    <div class="stars" id="stars"></div>
+    <!-- 3D Floating Shapes -->
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+
+    <!-- Floating Gifts -->
+    <div class="gift-float gift1">🎁</div>
+    <div class="gift-float gift2">🎁</div>
+    <div class="gift-float gift3">🎁</div>
+    <div class="gift-float gift4">🎁</div>
 
     <!-- Main Container -->
     <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1>Merry Christmas</h1>
-            <p class="subtitle">2025</p>
-        </div>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-subtitle">Season's Greetings</div>
+            <h1 class="hero-title">MERRY<br>CHRISTMAS</h1>
+            <div class="hero-year">2025</div>
+        </section>
 
-        <!-- Premium Glass Card -->
-        <div class="card">
-            <div class="card-content">
-                <!-- Personal Message -->
-                <div class="message">
-                    <div class="from">From Allan, with love...</div>
-                    <p>
-                        Dear Friend,
-                    </p>
-                    <p>
-                        As we celebrate this beautiful season, I want to personally wish you a Christmas filled with joy, peace, and love. May this festive time bring warmth to your heart and endless blessings to you and your loved ones.
-                    </p>
-                    <p>
-                        In this season of giving and reflection, I'm reminded of how precious each connection is. Thank you for being part of my journey, and may the spirit of Christmas light up your path with hope and happiness.
-                    </p>
-                </div>
+        <!-- Content -->
+        <div class="content-wrapper">
+            <div class="card">
+                <!-- Message -->
+                <div class="from-tag">From Allan, with love...</div>
+
+                <p class="message-text">
+                    Dear Friend,
+                </p>
+
+                <p class="message-text">
+                    As we celebrate this beautiful season, I want to personally wish you a Christmas filled with joy, peace, and love. May this festive time bring warmth to your heart and endless blessings to you and your loved ones.
+                </p>
+
+                <p class="message-text">
+                    In this season of giving and reflection, I'm reminded of how precious each connection is. Thank you for being part of my journey, and may the spirit of Christmas light up your path with hope and happiness.
+                </p>
 
                 <!-- Christmas Tree -->
-                <div class="tree-emoji">🎄</div>
+                <div class="christmas-tree">🎄</div>
 
                 <!-- Bible Verse -->
-                <div class="bible-verse">
+                <div class="verse-card">
                     <div class="verse-icon">✨</div>
                     <div class="verse-text">
                         For unto you is born this day in the city of David a Saviour, which is Christ the Lord. And suddenly there was with the angel a multitude of the heavenly host praising God, and saying, Glory to God in the highest, and on earth peace, good will toward men.
                     </div>
-                    <div class="verse-reference">
-                        LUKE 2:11, 13-14 (KJV)
-                    </div>
+                    <div class="verse-reference">LUKE 2:11, 13-14 (KJV)</div>
                 </div>
 
-                <!-- Closing -->
-                <div class="closing">
-                    <p>May God's love shine upon you this Christmas and always!</p>
-                    <div class="heart">❤️</div>
-                    <div class="signature">Allan Rufus</div>
+                <!-- Signature -->
+                <div class="signature-section">
+                    <p class="signature-message">May God's love shine upon you this Christmas and always!</p>
+                    <div class="heart-icon">❤️</div>
+                    <div class="signature-name">ALLAN RUFUS</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Instagram Link -->
-    <a href="https://www.instagram.com/allan_rufus_ar07?igsh=eGE5dm9zdmhsbzJr&utm_source=qr" target="_blank" class="instagram-link" title="Follow Allan on Instagram">
-        📷
-    </a>
-
-    <!-- Music Control Button -->
-    <button class="music-control" id="musicBtn" onclick="toggleMusic()">🎵</button>
+    <!-- Social Controls -->
+    <div class="social-controls">
+        <a href="https://www.instagram.com/allan_rufus_ar07?igsh=eGE5dm9zdmhsbzJr&utm_source=qr"
+           target="_blank"
+           class="control-btn instagram-btn"
+           title="Follow Allan on Instagram">
+            📷
+        </a>
+        <button class="control-btn music-btn" id="musicBtn" onclick="toggleMusic()" title="Toggle Music">
+            🎵
+        </button>
+    </div>
 
     <!-- Background Music -->
     <audio id="bgMusic" loop>
@@ -744,92 +621,62 @@
             musicPlaying = !musicPlaying;
         }
 
-        // Auto-play music
+        // Auto-play
         window.addEventListener('load', () => {
             music.play().then(() => {
                 musicPlaying = true;
                 musicBtn.textContent = '🔇';
             }).catch(() => {
-                console.log('Click the music button to play');
+                console.log('Click music button to play');
             });
         });
 
-        // Create electric stars
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            const numberOfStars = 150;
-            const colors = ['#00D4FF', '#FF0844', '#00FF88', '#FFD700'];
-
-            for (let i = 0; i < numberOfStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.animationDelay = `${Math.random() * 3}s`;
-                star.style.animationDuration = `${2 + Math.random() * 3}s`;
-
-                // Random electric color
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                star.style.background = color;
-
-                starsContainer.appendChild(star);
-            }
-        }
-
-        // Create premium snowflakes
-        function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.className = 'snowflake';
-            snowflake.textContent = '❄';
-            snowflake.style.left = `${Math.random() * 100}%`;
-            snowflake.style.animationDuration = `${8 + Math.random() * 12}s`;
-            snowflake.style.fontSize = `${12 + Math.random() * 18}px`;
-            snowflake.style.opacity = Math.random() * 0.6 + 0.4;
-            document.body.appendChild(snowflake);
+        // Create snow
+        function createSnow() {
+            const snow = document.createElement('div');
+            snow.className = 'snow';
+            snow.textContent = '❄';
+            snow.style.left = `${Math.random() * 100}%`;
+            snow.style.animationDuration = `${10 + Math.random() * 15}s`;
+            snow.style.fontSize = `${15 + Math.random() * 15}px`;
+            snow.style.opacity = Math.random() * 0.6 + 0.4;
+            document.body.appendChild(snow);
 
             setTimeout(() => {
-                snowflake.remove();
-            }, 20000);
+                snow.remove();
+            }, 25000);
         }
 
-        // Create electric fireworks
-        function createFirework() {
-            const colors = ['#FF0844', '#00D4FF', '#00FF88', '#FFD700', '#B026FF', '#FFFFFF'];
-            const x = Math.random() * window.innerWidth;
-            const y = Math.random() * window.innerHeight * 0.6;
+        // Snow interval
+        setInterval(createSnow, 300);
 
-            for (let i = 0; i < 40; i++) {
-                const firework = document.createElement('div');
-                firework.className = 'firework';
-                firework.style.left = `${x}px`;
-                firework.style.top = `${y}px`;
+        // Parallax effect for shapes
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
 
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                firework.style.backgroundColor = color;
-                firework.style.color = color;
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 20;
+                const xMove = (x - 0.5) * speed;
+                const yMove = (y - 0.5) * speed;
+                shape.style.transform = `translate(${xMove}px, ${yMove}px)`;
+            });
+        });
 
-                const angle = (Math.PI * 2 * i) / 40;
-                const velocity = 80 + Math.random() * 120;
-                firework.style.setProperty('--x', `${Math.cos(angle) * velocity}px`);
-                firework.style.setProperty('--y', `${Math.sin(angle) * velocity}px`);
+        // Scroll reveal animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
 
-                document.body.appendChild(firework);
-
-                setTimeout(() => {
-                    firework.remove();
-                }, 2000);
-            }
-        }
-
-        // Initialize
-        createStars();
-
-        // Continuous snowfall
-        setInterval(createSnowflake, 200);
-
-        // Electric fireworks
-        setInterval(createFirework, 4000);
-        setTimeout(createFirework, 1500);
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
     </script>
 </body>
 </html>
