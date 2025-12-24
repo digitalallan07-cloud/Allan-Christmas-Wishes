@@ -575,81 +575,6 @@
             }
         }
 
-        /* Play Music Prompt */
-        .play-prompt {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, rgba(245, 241, 232, 0.98), rgba(253, 252, 249, 0.98));
-            border: 3px solid var(--gold);
-            border-radius: 30px;
-            padding: 40px 50px;
-            text-align: center;
-            z-index: 10000;
-            box-shadow:
-                0 30px 80px rgba(0, 0, 0, 0.4),
-                0 0 100px rgba(212, 175, 55, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            animation: promptFadeIn 0.5s ease-out;
-            cursor: pointer;
-        }
-
-        .play-prompt.hidden {
-            display: none;
-        }
-
-        @keyframes promptFadeIn {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
-
-        .play-prompt-icon {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            animation: pulseIcon 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulseIcon {
-            0%, 100% {
-                transform: scale(1);
-                filter: drop-shadow(0 5px 20px rgba(212, 175, 55, 0.5));
-            }
-            50% {
-                transform: scale(1.1);
-                filter: drop-shadow(0 8px 35px rgba(212, 175, 55, 0.8));
-            }
-        }
-
-        .play-prompt-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.75rem;
-            color: var(--burgundy);
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .play-prompt-subtext {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            color: #666;
-            font-weight: 400;
-        }
-
-        .play-prompt:hover {
-            transform: translate(-50%, -50%) scale(1.05);
-            box-shadow:
-                0 35px 90px rgba(0, 0, 0, 0.5),
-                0 0 120px rgba(212, 175, 55, 0.7),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             .main-card {
@@ -680,23 +605,6 @@
             .light {
                 width: 8px;
                 height: 8px;
-            }
-
-            .play-prompt {
-                padding: 35px 40px;
-                max-width: 85%;
-            }
-
-            .play-prompt-icon {
-                font-size: 4rem;
-            }
-
-            .play-prompt-text {
-                font-size: 1.5rem;
-            }
-
-            .play-prompt-subtext {
-                font-size: 0.9rem;
             }
         }
 
@@ -805,73 +713,46 @@
         </button>
     </div>
 
-    <!-- Play Music Prompt -->
-    <div class="play-prompt" id="playPrompt">
-        <div class="play-prompt-icon">🎄🎵</div>
-        <div class="play-prompt-text">Play Christmas Music</div>
-        <div class="play-prompt-subtext">Tap to enjoy festive melodies</div>
-    </div>
-
     <!-- Hidden Audio Player -->
-    <audio id="audioPlayer" loop preload="auto">
+    <audio id="audioPlayer" loop preload="auto" autoplay>
         <source src="christmas-music.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Mobile-Optimized Music Control
-        let musicPlaying = false;
+        // Auto-play Music with Mute Control
         const audioPlayer = document.getElementById('audioPlayer');
         const musicBtn = document.getElementById('musicBtn');
-        const playPrompt = document.getElementById('playPrompt');
 
-        // Set volume for best mobile experience
-        audioPlayer.volume = 0.7;
+        // Set volume for best experience
+        audioPlayer.volume = 0.5;
 
-        function startMusic() {
+        // Auto-play on page load
+        window.addEventListener('load', () => {
+            // Try to auto-play
             const playPromise = audioPlayer.play();
 
             if (playPromise !== undefined) {
                 playPromise.then(() => {
-                    musicBtn.textContent = '🔇';
-                    musicPlaying = true;
-                    // Hide prompt
-                    playPrompt.classList.add('hidden');
+                    // Auto-play successful
+                    musicBtn.textContent = '🔊';
                 }).catch((error) => {
-                    console.error('Playback error:', error);
-                    // Show error in prompt
-                    playPrompt.querySelector('.play-prompt-text').textContent = 'Tap Here to Play';
-                    playPrompt.querySelector('.play-prompt-subtext').textContent = 'Music requires a tap to start';
+                    // Auto-play blocked, user needs to click
+                    console.log('Auto-play blocked, click speaker to play');
+                    musicBtn.textContent = '🔇';
                 });
             }
-        }
+        });
 
+        // Toggle mute/unmute
         function toggleMusic() {
-            if (musicPlaying) {
-                audioPlayer.pause();
-                musicBtn.textContent = '🎵';
-                musicPlaying = false;
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                musicBtn.textContent = '🔊';
             } else {
-                startMusic();
+                audioPlayer.pause();
+                musicBtn.textContent = '🔇';
             }
         }
-
-        // Show play prompt after page loads
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                playPrompt.style.display = 'block';
-            }, 1500);
-        });
-
-        // Click on prompt to play
-        playPrompt.addEventListener('click', () => {
-            startMusic();
-        });
-
-        // Music button toggle
-        musicBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleMusic();
-        });
 
         // Create twinkling Christmas lights
         function createStringLights() {
