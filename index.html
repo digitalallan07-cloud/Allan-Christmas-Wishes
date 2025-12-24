@@ -723,19 +723,28 @@
         </button>
     </div>
 
-    <!-- Audio Player - Simplified -->
-    <audio id="audioPlayer" loop>
-        <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Music_for_Video/Kevin_MacLeod/Classical_Sampler/Kevin_MacLeod_-_Carol_of_the_Bells.mp3" type="audio/mpeg">
+    <!-- Audio Player - Home Alone Theme -->
+    <audio id="audioPlayer" loop preload="metadata">
+        <!-- Somewhere in My Memory - Home Alone Theme -->
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Mobile-friendly play instruction -->
+    <div id="playPrompt" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.9); color: white; padding: 30px 40px; border-radius: 20px; z-index: 10000; text-align: center; font-family: 'Montserrat', sans-serif;">
+        <div style="font-size: 3rem; margin-bottom: 15px;">🎵</div>
+        <div style="font-size: 1.2rem; margin-bottom: 10px;">Tap to Play Christmas Music</div>
+        <div style="font-size: 0.9rem; opacity: 0.8;">Somewhere in My Memory - Home Alone</div>
+    </div>
+
     <script>
-        // Simple Music Control
+        // Mobile-Optimized Music Control
         let musicPlaying = false;
         const audioPlayer = document.getElementById('audioPlayer');
         const musicBtn = document.getElementById('musicBtn');
+        const playPrompt = document.getElementById('playPrompt');
 
-        // Set volume
-        audioPlayer.volume = 0.5;
+        // Set volume for best mobile experience
+        audioPlayer.volume = 0.6;
 
         function toggleMusic() {
             if (musicPlaying) {
@@ -752,6 +761,8 @@
                         musicBtn.textContent = '🔇';
                         musicBtn.style.animation = 'pulse 2s infinite';
                         musicPlaying = true;
+                        // Hide prompt if shown
+                        if (playPrompt) playPrompt.style.display = 'none';
                     }).catch((error) => {
                         console.error('Playback error:', error);
                         musicBtn.textContent = '🎵';
@@ -760,7 +771,37 @@
             }
         }
 
-        // Simple error handler
+        // Show play prompt on mobile after page loads
+        window.addEventListener('load', () => {
+            // Detect mobile
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+            if (isMobile && playPrompt) {
+                // Show prompt after animations settle
+                setTimeout(() => {
+                    playPrompt.style.display = 'block';
+                    playPrompt.style.animation = 'fadeIn 0.5s ease-out';
+
+                    // Hide prompt after 4 seconds
+                    setTimeout(() => {
+                        playPrompt.style.opacity = '0';
+                        playPrompt.style.transition = 'opacity 0.5s';
+                        setTimeout(() => {
+                            playPrompt.style.display = 'none';
+                        }, 500);
+                    }, 4000);
+                }, 2000);
+            }
+        });
+
+        // Click anywhere on prompt to play
+        if (playPrompt) {
+            playPrompt.addEventListener('click', () => {
+                toggleMusic();
+            });
+        }
+
+        // Error handler
         audioPlayer.onerror = function(e) {
             console.error('Audio failed to load');
             musicBtn.textContent = '🎵';
