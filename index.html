@@ -723,31 +723,52 @@
         const audioPlayer = document.getElementById('audioPlayer');
         const musicBtn = document.getElementById('musicBtn');
 
-        // Set volume for best experience
-        audioPlayer.volume = 0.5;
+        // Auto-play strategy for mobile browsers
+        let musicStarted = false;
 
-        // Auto-play on page load
+        // Try auto-play on load
         window.addEventListener('load', () => {
-            // Try to auto-play
+            attemptAutoPlay();
+        });
+
+        // Also try on first user interaction
+        document.addEventListener('click', () => {
+            if (!musicStarted) {
+                attemptAutoPlay();
+            }
+        }, { once: true });
+
+        function attemptAutoPlay() {
+            // Start muted first (browsers allow muted autoplay)
+            audioPlayer.muted = true;
+            audioPlayer.volume = 0.6;
+
             const playPromise = audioPlayer.play();
 
             if (playPromise !== undefined) {
                 playPromise.then(() => {
-                    // Auto-play successful
-                    musicBtn.textContent = '🔊';
+                    musicStarted = true;
+                    // Unmute after 100ms
+                    setTimeout(() => {
+                        audioPlayer.muted = false;
+                        musicBtn.textContent = '🔊';
+                    }, 100);
                 }).catch((error) => {
-                    // Auto-play blocked, user needs to click
-                    console.log('Auto-play blocked, click speaker to play');
+                    // Auto-play failed, will play on first click
+                    console.log('Auto-play blocked, waiting for user interaction');
                     musicBtn.textContent = '🔇';
+                    audioPlayer.muted = false;
                 });
             }
-        });
+        }
 
         // Toggle mute/unmute
         function toggleMusic() {
             if (audioPlayer.paused) {
+                audioPlayer.muted = false;
                 audioPlayer.play();
                 musicBtn.textContent = '🔊';
+                musicStarted = true;
             } else {
                 audioPlayer.pause();
                 musicBtn.textContent = '🔇';
