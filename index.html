@@ -575,14 +575,79 @@
             }
         }
 
-        /* Music player (hidden) */
-        #musicPlayer {
+        /* Play Music Prompt */
+        .play-prompt {
             position: fixed;
-            top: -1000px;
-            left: -1000px;
-            width: 1px;
-            height: 1px;
-            opacity: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, rgba(245, 241, 232, 0.98), rgba(253, 252, 249, 0.98));
+            border: 3px solid var(--gold);
+            border-radius: 30px;
+            padding: 40px 50px;
+            text-align: center;
+            z-index: 10000;
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.4),
+                0 0 100px rgba(212, 175, 55, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            animation: promptFadeIn 0.5s ease-out;
+            cursor: pointer;
+        }
+
+        .play-prompt.hidden {
+            display: none;
+        }
+
+        @keyframes promptFadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .play-prompt-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: pulseIcon 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseIcon {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 5px 20px rgba(212, 175, 55, 0.5));
+            }
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 8px 35px rgba(212, 175, 55, 0.8));
+            }
+        }
+
+        .play-prompt-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: var(--burgundy);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .play-prompt-subtext {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .play-prompt:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow:
+                0 35px 90px rgba(0, 0, 0, 0.5),
+                0 0 120px rgba(212, 175, 55, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
         /* Responsive */
@@ -615,6 +680,23 @@
             .light {
                 width: 8px;
                 height: 8px;
+            }
+
+            .play-prompt {
+                padding: 35px 40px;
+                max-width: 85%;
+            }
+
+            .play-prompt-icon {
+                font-size: 4rem;
+            }
+
+            .play-prompt-text {
+                font-size: 1.5rem;
+            }
+
+            .play-prompt-subtext {
+                font-size: 0.9rem;
             }
         }
 
@@ -723,18 +805,19 @@
         </button>
     </div>
 
-    <!-- Audio Player - Christmas Music -->
-    <audio id="audioPlayer" loop preload="metadata">
-        <!-- Christmas Music -->
-        <source src="https://www.bensound.com/bensound-music/bensound-christmastime.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Mobile-friendly play instruction -->
-    <div id="playPrompt" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.9); color: white; padding: 30px 40px; border-radius: 20px; z-index: 10000; text-align: center; font-family: 'Montserrat', sans-serif;">
-        <div style="font-size: 3rem; margin-bottom: 15px;">🎵</div>
-        <div style="font-size: 1.2rem; margin-bottom: 10px;">Tap to Play Christmas Music</div>
-        <div style="font-size: 0.9rem; opacity: 0.8;">Somewhere in My Memory - Home Alone</div>
+    <!-- Play Music Prompt -->
+    <div class="play-prompt" id="playPrompt">
+        <div class="play-prompt-icon">🎄🎵</div>
+        <div class="play-prompt-text">Play Christmas Music</div>
+        <div class="play-prompt-subtext">Tap to enjoy festive melodies</div>
     </div>
+
+    <!-- Hidden Audio Player -->
+    <audio id="audioPlayer" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d1718ab41b.mp3" type="audio/mpeg">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-christmas-day-387.mp3" type="audio/mpeg">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         // Mobile-Optimized Music Control
@@ -744,68 +827,53 @@
         const playPrompt = document.getElementById('playPrompt');
 
         // Set volume for best mobile experience
-        audioPlayer.volume = 0.6;
+        audioPlayer.volume = 0.7;
+
+        function startMusic() {
+            const playPromise = audioPlayer.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    musicBtn.textContent = '🔇';
+                    musicPlaying = true;
+                    // Hide prompt
+                    playPrompt.classList.add('hidden');
+                }).catch((error) => {
+                    console.error('Playback error:', error);
+                    // Show error in prompt
+                    playPrompt.querySelector('.play-prompt-text').textContent = 'Tap Here to Play';
+                    playPrompt.querySelector('.play-prompt-subtext').textContent = 'Music requires a tap to start';
+                });
+            }
+        }
 
         function toggleMusic() {
             if (musicPlaying) {
                 audioPlayer.pause();
-                audioPlayer.currentTime = 0;
                 musicBtn.textContent = '🎵';
-                musicBtn.style.animation = 'none';
                 musicPlaying = false;
             } else {
-                const playPromise = audioPlayer.play();
-
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        musicBtn.textContent = '🔇';
-                        musicBtn.style.animation = 'pulse 2s infinite';
-                        musicPlaying = true;
-                        // Hide prompt if shown
-                        if (playPrompt) playPrompt.style.display = 'none';
-                    }).catch((error) => {
-                        console.error('Playback error:', error);
-                        musicBtn.textContent = '🎵';
-                    });
-                }
+                startMusic();
             }
         }
 
-        // Show play prompt on mobile after page loads
+        // Show play prompt after page loads
         window.addEventListener('load', () => {
-            // Detect mobile
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-            if (isMobile && playPrompt) {
-                // Show prompt after animations settle
-                setTimeout(() => {
-                    playPrompt.style.display = 'block';
-                    playPrompt.style.animation = 'fadeIn 0.5s ease-out';
-
-                    // Hide prompt after 4 seconds
-                    setTimeout(() => {
-                        playPrompt.style.opacity = '0';
-                        playPrompt.style.transition = 'opacity 0.5s';
-                        setTimeout(() => {
-                            playPrompt.style.display = 'none';
-                        }, 500);
-                    }, 4000);
-                }, 2000);
-            }
+            setTimeout(() => {
+                playPrompt.style.display = 'block';
+            }, 1500);
         });
 
-        // Click anywhere on prompt to play
-        if (playPrompt) {
-            playPrompt.addEventListener('click', () => {
-                toggleMusic();
-            });
-        }
+        // Click on prompt to play
+        playPrompt.addEventListener('click', () => {
+            startMusic();
+        });
 
-        // Error handler
-        audioPlayer.onerror = function(e) {
-            console.error('Audio failed to load');
-            musicBtn.textContent = '🎵';
-        };
+        // Music button toggle
+        musicBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMusic();
+        });
 
         // Create twinkling Christmas lights
         function createStringLights() {
